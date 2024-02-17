@@ -36,14 +36,14 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    try{
+    try {
         const author = await Author.findById(req.params.id)
-        const books = await Book.find({ author: author.id}).limit(6).exec()
+        const books = await Book.find({ author: author.id }).limit(6).exec()
         res.render('authors/show', {
             author: author,
             booksByAuthor: books
         })
-    } catch{
+    } catch {
         res.redirect('/')
     }
 })
@@ -82,7 +82,7 @@ router.delete('/:id', async (req, res) => {
     let author
     try {
         author = await Author.findById(req.params.id)
-        const response = await Author.deleteOne({_id: req.params.id})
+        const response = await Author.deleteOne({ _id: req.params.id })
         res.redirect('/authors')
     } catch {
         if (author == null) {

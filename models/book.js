@@ -17,7 +17,7 @@ const bookSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    createdAt : {
+    createdAt: {
         type: Date,
         required: true,
         default: Date.now
@@ -37,8 +37,8 @@ const bookSchema = new mongoose.Schema({
     }
 })
 
-bookSchema.virtual('coverImagePath').get(function (){
-    if (this.coverImage != null && this.coverImageType !=null) {
+bookSchema.virtual('coverImagePath').get(function () {
+    if (this.coverImage != null && this.coverImageType != null) {
         return `data:${this.coverImageType}; charset=utf-8;base64,${this.coverImage.toString('base64')}`
     }
 })
