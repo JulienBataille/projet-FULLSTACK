@@ -105,11 +105,12 @@ router.put('/:id', async (req, res) => {
         book.pageCount = req.body.pageCount
         book.description = req.body.description
         if (req.body.cover != null && req.body.cover !== '') {
-            saveCover(body, req.body.cover)
+            saveCover(book, req.body.cover)
         }
         await book.save()
         res.redirect(`/books/${book.id}`)
-    } catch {
+    } catch (err){
+        console.error(err)
         if (book != null) {
             renderEditPage(res, book, true)
 
