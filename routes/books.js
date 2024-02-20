@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 
     try {
         const newBook = await book.save()
-        res.redirect('books/${newBook.id}')
+        res.redirect(`books/${newBook.id}`)
     } catch {
         renderNewPage(res, book, true)
     }
@@ -109,8 +109,7 @@ router.put('/:id', async (req, res) => {
         }
         await book.save()
         res.redirect(`/books/${book.id}`)
-    } catch (err){
-        console.error(err)
+    } catch {
         if (book != null) {
             renderEditPage(res, book, true)
 
